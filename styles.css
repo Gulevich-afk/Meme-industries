@@ -1,0 +1,230 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+}
+
+/*Хедер*/
+.header {
+  background-color: coral;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 50px;
+  position: sticky;
+  top: 0;
+  border-radius: 0 0 16px 16px;
+  color: white;
+}
+
+.logo img {
+  width: 120px;
+  height: 60px;
+  object-fit: contain;
+}
+
+.links {
+  display: flex;
+  gap: 20px;
+}
+
+.links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.links a:hover {
+  color: #ffffff94;
+}
+
+.icons {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.btn button {
+  background-color: white;
+  color: coral;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn button:hover{
+  padding: 15px 25px;
+  transition: 0.2s;
+}
+
+/*Хиро*/
+.hero {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: white;
+  padding: 50px;
+  border-radius: 16px;
+  margin: 40px;
+}
+
+.hero-text {
+  max-width: 400px;
+}
+
+.cta-btn {
+  background-color: coral;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold
+}
+
+.hero-img img {
+  width: 400px;
+  border-radius: 16px;
+}
+
+/*Кардс*/
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 40px;
+}
+
+.card {
+  background-color: white;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.card img {
+  width: 100%;
+  border-radius: 12px;
+}
+
+.card button {
+  background-color: coral;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold
+}
+
+/*Спонсоры*/
+.sponsors {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  padding: 50px 60px;
+  background-color: #f8f8f8;
+  border-radius: 16px;
+  margin-top: 50px;
+}
+
+.big-img {
+  width: 340px;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.sponsor-info {
+  max-width: 320px;
+}
+
+.sponsor-info h2 {
+  font-size: 26px;
+  margin-bottom: 10px;
+  color: coral;
+}
+
+.sponsor-info p {
+  color: #333;
+  line-height: 1.4;
+}
+
+.sponsor-btn {
+  background-color: coral;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 25px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold
+}
+
+.sponsor-btn:hover {
+  padding: 17px 30px;
+  transition: 0.2s;
+}
+
+/*Footer*/
+footer {
+  width: 100%;
+  background-color: #222;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10px;
+}
+
+.footer-top {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  border-bottom: 1px solid #444;
+}
+
+.footer-links {
+  display: flex;
+  gap: 15px;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: #ccc;
+  font-size: 14px;
+}
+
+.footer-links a:hover {
+  color: #fff;
+}
+
+.footer-logo img {
+  width: 100px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.footer-bottom {
+  padding: 10px;
+  text-align: center;
+  font-size: 12px;
+  color: #aaa;
+}
