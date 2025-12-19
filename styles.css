@@ -1,12 +1,39 @@
+:root {
+  --bg-body: #f4f4f4;
+  --bg-card: white;
+  --text-main: #000;
+  --text-sec: #333;
+  --accent: coral;
+  --header-bg: coral;
+  --footer-bg: #222;
+}
+
+body.dark-theme {
+  --bg-body: #121212;
+  --bg-card: #1e1e1e;
+  --text-main: #ffffff;
+  --text-sec: #cccccc;
+  --accent: #ff7f50;
+  --header-bg: #1e1e1e; 
+  --footer-bg: #000;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
+  background-color: var(--bg-body);
+  color: var(--text-main);
+  overflow-x: hidden;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 /*Хедер*/
 .header {
-  background-color: coral;
+  background-color: var(--header-bg);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -15,6 +42,8 @@ body {
   top: 0;
   border-radius: 0 0 16px 16px;
   color: white;
+  z-index: 1000;
+  transition: background-color 0.3s;
 }
 
 .logo img {
@@ -32,10 +61,17 @@ body {
   color: white;
   text-decoration: none;
   font-weight: 500;
+  transition: color 0.2s;
 }
 
 .links a:hover {
   color: #ffffff94;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
 .icons {
@@ -48,23 +84,84 @@ body {
   width: 24px;
   height: 24px;
   object-fit: contain;
+  filter: brightness(0) invert(1);
 }
 
-.btn button {
-  background-color: white;
-  color: coral;
+.animated-btn {
   border: none;
   border-radius: 10px;
   padding: 10px 20px;
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
-  transition: 0.2s;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-.btn button:hover{
-  padding: 15px 25px;
-  transition: 0.2s;
+.btn button {
+  background-color: white;
+  color: var(--accent);
+}
+
+.cta-btn, .card button, .sponsor-btn {
+  background-color: var(--accent);
+  color: white;
+}
+
+.animated-btn:hover {
+  padding: 12px 25px;
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Тоггл темы, нейронка в помощь */
+.theme-switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+}
+
+.theme-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 22px;
+  width: 22px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+  background-image: url('https://cdn-icons-png.flaticon.com/512/169/169367.png');
+  background-size: 14px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+input:checked + .slider {
+  background-color: var(--accent);
+}
+
+input:checked + .slider:before {
+  transform: translateX(30px);
+  background-image: url('https://cdn-icons-png.flaticon.com/512/547/547433.png');
 }
 
 /*Хиро*/
@@ -72,62 +169,91 @@ body {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: white;
+  background-color: var(--bg-card);
   padding: 50px;
   border-radius: 16px;
   margin: 40px;
+  flex-wrap: wrap;
+  transition: background-color 0.3s;
 }
 
 .hero-text {
   max-width: 400px;
 }
 
-.cta-btn {
-  background-color: coral;
-  border: none;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: bold
-}
-
 .hero-img img {
   width: 400px;
+  max-width: 100%;
   border-radius: 16px;
 }
 
 /*Кардс*/
-.cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+.cards-section {
+  position: relative;
+  max-width: 1200px;
+  margin: 40px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+}
+
+.slider-container {
+  overflow: hidden;
+  width: 100%;
+  padding: 20px 0;
+}
+
+.slider-track {
+  display: flex;
   gap: 20px;
-  padding: 40px;
+  transition: transform 0.5s ease-in-out;
 }
 
 .card {
-  background-color: white;
+  min-width: 300px;
+  background-color: var(--bg-card);
   padding: 20px;
   border-radius: 12px;
   text-align: center;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  flex-shrink: 0;
+  transition: background-color 0.3s;
 }
 
 .card img {
   width: 100%;
+  height: 200px;
+  object-fit: cover;
   border-radius: 12px;
+  margin-bottom: 10px;
 }
 
-.card button {
-  background-color: coral;
-  border: none;
-  color: white;
-  padding: 8px 16px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: bold
+.card p {
+  color: var(--text-sec);
 }
+
+.slider-btn {
+  background-color: var(--accent);
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 10;
+  flex-shrink: 0;
+  transition: 0.2s;
+}
+
+.slider-btn:hover {
+  filter: brightness(0.9);
+  transform: scale(1.1);
+}
+
+.prev-btn { margin-right: 10px; }
+.next-btn { margin-left: 10px; }
 
 /*Спонсоры*/
 .sponsors {
@@ -136,9 +262,11 @@ body {
   align-items: center;
   gap: 30px;
   padding: 50px 60px;
-  background-color: #f8f8f8;
+  background-color: var(--bg-card);
   border-radius: 16px;
-  margin-top: 50px;
+  margin: 50px 40px;
+  flex-wrap: wrap;
+  transition: background-color 0.3s;
 }
 
 .big-img {
@@ -156,39 +284,24 @@ body {
 .sponsor-info h2 {
   font-size: 26px;
   margin-bottom: 10px;
-  color: coral;
+  color: var(--accent);
 }
 
 .sponsor-info p {
-  color: #333;
+  color: var(--text-sec);
   line-height: 1.4;
-}
-
-.sponsor-btn {
-  background-color: coral;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  padding: 12px 25px;
-  font-size: 16px;
-  cursor: pointer;
-  font-weight: bold
-}
-
-.sponsor-btn:hover {
-  padding: 17px 30px;
-  transition: 0.2s;
 }
 
 /*Footer*/
 footer {
   width: 100%;
-  background-color: #222;
+  background-color: var(--footer-bg);
   color: #fff;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-top: 10px;
+  transition: background-color 0.3s;
 }
 
 .footer-top {
@@ -199,6 +312,7 @@ footer {
   align-items: center;
   padding: 10px 20px;
   border-bottom: 1px solid #444;
+  flex-wrap: wrap;
 }
 
 .footer-links {
@@ -212,10 +326,6 @@ footer {
   font-size: 14px;
 }
 
-.footer-links a:hover {
-  color: #fff;
-}
-
 .footer-logo img {
   width: 100px;
   height: 40px;
@@ -227,4 +337,52 @@ footer {
   text-align: center;
   font-size: 12px;
   color: #aaa;
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    padding: 15px;
+    gap: 15px;
+  }
+  
+  .links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    font-size: 14px;
+  }
+
+  .hero {
+    flex-direction: column-reverse;
+    text-align: center;
+    padding: 20px;
+    margin: 20px;
+  }
+  
+  .hero-img img {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .card {
+    min-width: 100%;
+  }
+
+  .sponsors {
+    flex-direction: column;
+    text-align: center;
+    padding: 30px;
+    margin: 20px;
+  }
+  
+  .big-img {
+    width: 100%;
+    height: auto;
+  }
+
+  .footer-top {
+    flex-direction: column;
+    gap: 20px;
+  }
 }
