@@ -3,9 +3,48 @@ document.querySelector('.cta-btn').addEventListener('click', () => {
 });
 
 const themeToggle = document.getElementById('theme-toggle');
-themeToggle.addEventListener('change', () => {
-  document.body.classList.toggle('dark-theme');
+const body = document.body;
+const changelogBtn = document.querySelector('.changelog-btn');
+const modalOverlay = document.getElementById('changelog-modal');
+const closeBtn = document.querySelector('.close-btn');
+
+
+changelogBtn.addEventListener('click', () => {
+    modalOverlay.classList.add('active');
 });
+
+closeBtn.addEventListener('click', () => {
+    modalOverlay.classList.remove('active');
+});
+
+
+modalOverlay.addEventListener('click', (e) => {
+    if (e.target === modalOverlay) {
+        modalOverlay.classList.remove('active');
+    }
+});
+
+
+function setTimeBasedTheme() {
+    const now = new Date();
+    const currentHour = now.getHours();
+
+    const isNightTime = currentHour >= 20 || currentHour < 7;
+
+    if (isNightTime) {
+        body.classList.add('dark-theme');
+        themeToggle.checked = true;
+    } else {
+        body.classList.remove('dark-theme');
+        themeToggle.checked = false;
+    }
+}
+
+
+themeToggle.addEventListener('change', () => {
+  body.classList.toggle('dark-theme');
+});
+
 
 const track = document.querySelector('.slider-track');
 const btnPrev = document.querySelector('.prev-btn');
@@ -24,7 +63,7 @@ function updateCardsToShow() {
   updateSlider();
 }
 
-function updateSlider() { /*Полузнок с помощью нейронки*/
+function updateSlider() {
   const cardWidth = cards[0].offsetWidth + 20; 
   track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
   
@@ -51,4 +90,5 @@ btnPrev.addEventListener('click', () => {
 
 window.addEventListener('resize', updateCardsToShow);
 
+setTimeBasedTheme();
 updateCardsToShow();
