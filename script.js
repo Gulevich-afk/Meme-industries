@@ -92,3 +92,97 @@ window.addEventListener('resize', updateCardsToShow);
 
 setTimeBasedTheme();
 updateCardsToShow();
+
+const jsCardsData = [
+  { id: 1, title: "Тролфейс", description: "Классика.", img: "img/Trollface.png", category: "Классика" },
+  { id: 2, title: "Лягушка Pepe", description: "Был выпущен в комиксе 'Пацанский клуб'. Стал американским интернет-мемом в 2008 году.", img: "img/Pepe.jpg", category: "Классика" },
+  { id: 3, title: "67", description: "Завирусился в марте 2025 года. Сам чувак из мема не знает почему он прокричал '67'.", img: "img/67_meme.jpg", category: "Тренд" },
+  { id: 4, title: "What is this diddy blud doing...", description: "Мем про людей которые считают простые числа на калькуляторе.", img: "img/What is this diddy blud doing.png", category: "Тренд" },
+  { id: 5, title: "Райан Гослинг: тотально по#уй", description: "Тотально всё равно.", img: "img/Райан Гослинг тотально пофиг.jpg", category: "Фильмы" },
+  { id: 6, title: "Леонардо Ди Каприо: стакан", description: "Кадр из фильма 'Великий Гэтсби', где персонаж ДиКаприо хитро улыбается с бокалом.", img: "img/Леонардо Ди Каприо стакан.jpg", category: "Фильмы" }
+];
+
+const gridContainer = document.getElementById('dynamic-grid');
+const dynamicModal = document.getElementById('dynamic-modal');
+const closeDynamicBtn = document.querySelector('.close-dynamic-btn');
+const modalTitle = document.getElementById('modal-title');
+const modalDesc = document.getElementById('modal-desc');
+const filterContainer = document.getElementById('filter-container');
+
+
+function generateFilterButtons() {
+  const categories = ['Все', ...new Set(jsCardsData.map(item => item.category))];
+
+  filterContainer.innerHTML = '';
+
+  categories.forEach(cat => {
+    const btn = document.createElement('button');
+    btn.classList.add('animated-btn', 'filter-btn');
+    btn.textContent = cat;
+    btn.setAttribute('data-category', cat === 'Все' ? 'all' : cat);
+
+    if (cat === 'Все') {
+      btn.classList.add('active');
+    }
+
+    btn.addEventListener('click', (e) => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      e.target.classList.add('active');
+      renderDynamicCards(e.target.getAttribute('data-category'));
+    });
+
+    filterContainer.appendChild(btn);
+  });
+}
+
+
+function renderDynamicCards(filter = 'all') {
+  gridContainer.innerHTML = '';
+  const filteredData = filter === 'all' 
+    ? jsCardsData 
+    : jsCardsData.filter(item => item.category === filter);
+  
+  filteredData.forEach(item => {
+    const cardEl = document.createElement('div');
+    cardEl.classList.add('card');
+    
+    const imgEl = document.createElement('img');
+    imgEl.src = item.img;
+    imgEl.alt = item.title;
+
+    const titleEl = document.createElement('h3');
+    titleEl.textContent = item.title;
+    
+    const btnEl = document.createElement('button');
+    btnEl.classList.add('animated-btn');
+    btnEl.textContent = 'Подробнее';
+    
+    btnEl.addEventListener('click', () => {
+      openDynamicModal(item);
+    });
+
+    cardEl.appendChild(imgEl);
+    cardEl.appendChild(titleEl);
+    cardEl.appendChild(btnEl);
+    gridContainer.appendChild(cardEl);
+  });
+}
+
+function openDynamicModal(item) {
+  modalTitle.textContent = item.title;
+  modalDesc.textContent = item.description;
+  dynamicModal.classList.add('active');
+}
+
+closeDynamicBtn.addEventListener('click', () => {
+  dynamicModal.classList.remove('active');
+});
+
+dynamicModal.addEventListener('click', (e) => {
+  if (e.target === dynamicModal) {
+    dynamicModal.classList.remove('active');
+  }
+});
+
+generateFilterButtons();
+renderDynamicCards();
