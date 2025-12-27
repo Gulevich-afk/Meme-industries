@@ -108,6 +108,18 @@
   <button class="slider-btn next-btn">❯</button>
 </section>
 
+<section class="hero" id="dynamic-projects">
+  <div style="width: 100%;">
+    <div style="text-align: center; margin-bottom: 30px;">
+      <h2 style="color: var(--accent);">Популярные мемы</h2>
+      <div id="filter-container">
+      </div>
+    </div>
+    <div class="dynamic-grid" id="dynamic-grid">
+    </div>
+  </div>
+</section>
+
 <section class="sponsors" id="sponsors">
   <div class="big-img-box">
     <img src="https://afk.kz/9af20fce3226a2c8b3744aed6e0b9332.png" alt="Большой спонсор" class="big-img">
@@ -149,6 +161,7 @@
         <span class="close-btn">&times;</span>
         <h2>📜 История Изменений (Changelog)</h2>
         <ul class="changelog-list">
+            <li>**v1.1.6 (26.12.2025)**: Добавлена секция "Популярные мемы".</li>
             <li>**v1.1.5 (20.12.2025)**: Добавлено окно "Changelog".</li>
             <li>**v1.1.4 (20.12.2025)**: Добавлена функция автоматической смены темы в зависимости от времени суток.</li>
             <li>**v1.1.3 (19.12.2025)**: Реализована светлая/темная тема и навигация по разделам.</li>
@@ -160,6 +173,14 @@
             <li>**v1.0.0 (10.12.2025)**: Создание сайта.</li>
         </ul>
     </div>
+</div>
+
+<div id="dynamic-modal" class="modal-overlay">
+  <div class="modal-content">
+      <span class="close-dynamic-btn close-btn">&times;</span>
+      <h2 id="modal-title"></h2>
+      <p id="modal-desc" style="margin: 20px 0;"></p>
+  </div>
 </div>
 
 <script src="script.js"></script>
