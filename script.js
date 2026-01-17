@@ -98,7 +98,7 @@ const jsCardsData = [
   { id: 2, title: "Лягушка Pepe", description: "Был выпущен в комиксе 'Пацанский клуб'. Стал американским интернет-мемом в 2008 году.", img: "img/Pepe.jpg", category: "Классика" },
   { id: 3, title: "67", description: "Завирусился в марте 2025 года. Сам чувак из мема не знает почему он прокричал '67'.", img: "img/67_meme.jpg", category: "Тренд" },
   { id: 4, title: "What is this diddy blud doing...", description: "Мем про людей которые считают простые числа на калькуляторе.", img: "img/What is this diddy blud doing.png", category: "Тренд" },
-  { id: 5, title: "Райан Гослинг: тотально по#уй", description: "Тотально всё равно.", img: "img/Райан Гослинг тотально пофиг.jpg", category: "Фильмы" },
+  { id: 5, title: "Райан Гослинг: тотально всё равно", description: "Тотально всё равно.", img: "img/Райан Гослинг тотально пофиг.jpg", category: "Фильмы" },
   { id: 6, title: "Леонардо Ди Каприо: стакан", description: "Кадр из фильма 'Великий Гэтсби', где персонаж ДиКаприо хитро улыбается с бокалом.", img: "img/Леонардо Ди Каприо стакан.jpg", category: "Фильмы" }
 ];
 
